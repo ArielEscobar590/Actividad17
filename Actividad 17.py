@@ -4,11 +4,18 @@ class Participante:
         self.nombreinst = nombreinst
 
     def Mostrar(self):
-        print(self.nombreinst)
+        print(f" {self.nombreinst}")
 
-class Bandas(Participante):
-    def __init__(self):
-        super().__init__('Bandas')
+class BandaEscolar(Participante):
+    categorias = ["Primaria", "Básico", "Diversificado"]
+    criterios = ["ritmo", "uniformidad", "coreografía", "alineación", "puntualidad"]
+
+    def __init__(self, nombreinst, categoria):
+        super().__init__(nombreinst)
+        self._categoria = None
+        self.set_categoria(categoria)
+        self._puntajes = {}
+
 class ConcursoBandasApp:
     def __init__(self):
         self.ventana = tk.Tk()
