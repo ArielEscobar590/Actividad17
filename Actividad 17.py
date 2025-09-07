@@ -13,8 +13,38 @@ class BandaEscolar(Participante):
     def __init__(self, nombreinst, categoria):
         super().__init__(nombreinst)
         self._categoria = None
-        self.set_categoria(categoria)
+        self._categoria(categoria)
         self._puntajes = {}
+
+    def registrar_puntajes(self, puntajes: dict):
+        if set(puntajes.keys()) != set(self.criterios):
+            raise ValueError("Faltan o sobran criterios de evaluación")
+
+        for crit, val in puntajes.items():
+            if not (0 <= val <= 10):
+                raise ValueError(f"El puntaje de {crit} está fuera de rango (0–10)")
+        self._puntajes = puntajes
+
+    @property
+    def total(self):
+        return sum(self._puntajes.values()) if self._puntajes else 0
+
+    @property
+    def promedio(self):
+        return self.total / len(self._puntajes) if self._puntajes else 0
+
+    def Mostrar(self):
+        base = super().Mostrar()
+        if self._puntajes:
+            return f"{base} | {self._categoria} | Total: {self.total}"
+        else:
+            return f"{base} | {self._categoria} | Sin evaluación"
+
+class Categoria:
+    def revisarcategoria(self, categoria):
+        if categoria not in self.categorias:
+            ValueError(f"Categoría inválida: {categoria}")
+        self.categoria = categoria
 
 class ConcursoBandasApp:
     def __init__(self):
