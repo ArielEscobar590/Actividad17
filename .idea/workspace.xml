@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6645c946-e529-4286-a2a3-ae49d46c7818" name="Changes" comment="commit">
-      <change beforePath="$PROJECT_DIR$/Actividad 17.py" beforeDir="false" afterPath="$PROJECT_DIR$/Actividad 17.py" afterDir="false" />
-    </list>
+    <list default="true" id="6645c946-e529-4286-a2a3-ae49d46c7818" name="Changes" comment="commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,7 +96,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1757128258464</updated>
-      <workItem from="1757128259588" duration="2964000" />
+      <workItem from="1757128259588" duration="7269000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -116,7 +114,39 @@
       <option name="project" value="LOCAL" />
       <updated>1757129336135</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="commit">
+      <option name="closed" value="true" />
+      <created>1757217073077</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1757217073077</updated>
+    </task>
+    <task id="LOCAL-00004" summary="commit">
+      <option name="closed" value="true" />
+      <created>1757219225541</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1757219225541</updated>
+    </task>
+    <task id="LOCAL-00005" summary="commit">
+      <option name="closed" value="true" />
+      <created>1757219755037</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1757219755037</updated>
+    </task>
+    <task id="LOCAL-00006" summary="commit">
+      <option name="closed" value="true" />
+      <created>1757224029861</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1757224029861</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,7 +157,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Actividad17$Actividad_17.coverage" NAME="Actividad 17 Coverage Results" MODIFIED="1757128447608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Actividad17$a.coverage" NAME="a Coverage Results" MODIFIED="1757208009763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Actividad17$Actividad_17.coverage" NAME="Actividad 17 Coverage Results" MODIFIED="1757220039886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
