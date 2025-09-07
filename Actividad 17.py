@@ -3,7 +3,7 @@ class Participante:
     def __init__(self, nombreinst):
         self.nombreinst = nombreinst
 
-    def Mostrar(self):
+    def mostrar(self):
         print(f" {self.nombreinst}")
 
 class BandaEscolar(Participante):
@@ -33,7 +33,7 @@ class BandaEscolar(Participante):
     def promedio(self):
         return self.total / len(self._puntajes) if self._puntajes else 0
 
-    def Mostrar(self):
+    def mostrar(self):
         base = super().Mostrar()
         if self._puntajes:
             return f"{base} | {self._categoria} | Total: {self.total}"
@@ -41,10 +41,32 @@ class BandaEscolar(Participante):
             return f"{base} | {self._categoria} | Sin evaluación"
 
 class Categoria:
-    def revisarcategoria(self, categoria):
+    def revisar_categoria(self, categoria):
         if categoria not in self.categorias:
             ValueError(f"Categoría inválida: {categoria}")
         self.categoria = categoria
+
+class Concurso:
+    def __init__(self, nombre, fecha):
+        self.nombre = nombre
+        self.fecha = fecha
+        self.bandas = {}
+
+    def inscribir_banda(self, banda: BandaEscolar):
+        if banda.nombreinst in self.bandas:
+            raise ValueError("Ya existe una banda con ese nombre")
+        self.bandas[banda.nombreinst] = banda
+
+    def registrar_evaluacion(self, nombre_banda, puntajes):
+        if nombre_banda not in self.bandas:
+            raise ValueError("Banda no inscrita")
+        self.bandas[nombre_banda].registrar_puntajes(puntajes)
+
+    def listar_bandas(self):
+        return [b.mostrar_info() for b in self.bandas.values()]
+
+    def ranking(self):
+        pass
 
 class ConcursoBandasApp:
     def __init__(self):
