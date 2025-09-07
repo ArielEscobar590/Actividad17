@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import messagebox
+
 
 class Participante:
     def __init__(self, nombrebanda, institucion):
@@ -23,7 +25,6 @@ class BandaEscolar(Participante):
     def registrar_puntajes(self, puntajes: dict):
         if set(puntajes.keys()) != set(self.criterios):
             raise ValueError("Faltan o sobran criterios de evaluación")
-
         for crit, val in puntajes.items():
             if not (0 <= val <= 10):
                 raise ValueError(f"El puntaje de {crit} está fuera de rango (0–10)")
@@ -81,7 +82,7 @@ class ConcursoBandasApp:
     def __init__(self):
         self.ventana = tk.Tk()
         self.ventana.title("Concurso de Bandas - Quetzaltenango")
-        self.ventana.geometry("500x300")
+        self.ventana.geometry("600x400")
 
         self.concurso = Concurso("Concurso 14 de Septiembre", "14/09/2025")
 
@@ -114,7 +115,7 @@ class ConcursoBandasApp:
 
         tk.Label(win, text="Nombre de la Banda:").grid(row=0, column=0)
         tk.Label(win, text="Institución:").grid(row=1, column=0)
-        tk.Label(win, text="Categoría:").grid(row=2, column=0)
+        tk.Label(win, text="Categoría (Primaria, Básico, Diversificado):").grid(row=2, column=0)
 
         entry_nombre = tk.Entry(win)
         entry_institucion = tk.Entry(win)
@@ -124,17 +125,67 @@ class ConcursoBandasApp:
         entry_institucion.grid(row=1, column=1)
         entry_categoria.grid(row=2, column=1)
 
+        def guardar():
+            try:
+                banda = BandaEscolar(entry_nombre.get(), entry_institucion.get(), entry_categoria.get())
+                self.concurso.inscribir_banda(banda)
+                messagebox.showinfo("Éxito", "Banda inscrita correctamente")
+                win.destroy()
+            except Exception as e:
+                messagebox.showerror("Error", str(e))
+
+        tk.Button(win, text="Guardar", command=guardar).grid(row=3, columnspan=2)
+
     def registrar_evaluacion(self):
         win = tk.Toplevel(self.ventana)
         win.title("Registrar Evaluación")
+
+        tk.Label(win, text="Nombre de la Banda:").grid(row=0, column=0)
+        entry_nombre = tk.Entry(win)
+        entry_nombre.grid(row=0, column=1)
+
+        entradas = {}
+        fila = 1
+        for crit in BandaEscolar.criterios:
+            tk.Label(win, text=f"{crit.capitalize()}:").grid(row=fila, column=0)
+            entradas[crit] = tk.Entry(win)
+            entradas[crit].grid(row=fila, column=1)
+            fila += 1
+
+        def guardar_eval():
+            try:
+                puntajes = {crit: int(entradas[crit].get()) for crit in entradas}
+                self.concurso.registrar_evaluacion(entry_nombre.get(), puntajes)
+                messagebox.showinfo("Éxito", "Evaluación registrada correctamente")
+                win.destroy()
+            except Exception as e:
+                messagebox.showerror("Error", str(e))
+
+        tk.Button(win, text="Guardar", command=guardar_eval).grid(row=fila, columnspan=2)
 
     def listar_bandas(self):
         win = tk.Toplevel(self.ventana)
         win.title("Listado de Bandas")
 
+        texto = tk.Text(win, width=70, height=15)
+        texto.pack()
+
+        for info in self.concurso.listar_bandas():
+            texto.insert(tk.END, info + "\n")
+
     def ver_ranking(self):
         win = tk.Toplevel(self.ventana)
         win.title("Ranking Final")
+
+        texto = tk.Text(win, width=70, height=15)
+        texto.pack()
+
+        ranking = self.concurso.ranking()
+        for i, b in enumerate(ranking, start=1):
+            texto.insert(
+                tk.END,
+                f"{i}. {b._nombrebanda} ({b._institucion}) | {b._categoria} | Total: {b.total}\n"
+            )
 
 
 if __name__ == "__main__":
